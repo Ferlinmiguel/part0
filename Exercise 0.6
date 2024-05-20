@@ -1,0 +1,23 @@
+sequenceDiagram
+  participant user
+  participant browser
+  participant server
+
+  browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+  activate server
+  server-->>browser: Main.js
+  deactivate server
+
+  activate server
+  server->>browser: Post HTML
+  deactivate server
+
+  activate server
+  server->>browser: Post CSS
+  deactivate server
+
+  user->>browser: Click the textbox and writes a note, then press the botton save
+  browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa/data.json
+  activate server
+  server-->>browser: [{ "content": "Hello", "date": "2024-2-2" }, ... ]
+  deactivate server
